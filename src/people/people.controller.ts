@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 import { PeopleService } from './people.service';
 import { CreatePersonDto } from './dto/create-person.dto';
-import { UpdatePersonDto } from './dto/update-person.dto';
 import {
   Ctx,
   MessagePattern,
@@ -27,37 +26,14 @@ export class PeopleController {
     private readonly rabbitmqService: RabbitmqService,
   ) {}
 
-  @Post()
-  create(@Body() createPersonDto: CreatePersonDto) {
-    return this.peopleService.create(createPersonDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.peopleService.findAll();
-  }
-
-  @Get('new')
+  @Get('send')
   send() {
-    return this.rabbitmqService.send('create-people', {
+    const people = {
       name: 'Alysson Martin',
       email: 'alysson.ti@grupointegrado.br',
-    });
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.peopleService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePersonDto: UpdatePersonDto) {
-    return this.peopleService.update(+id, updatePersonDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.peopleService.remove(+id);
+    };
+    this.rabbitmqService.send('create-people', people);
+    return this.peopleService.create(people);
   }
 
   @MessagePattern('create-people')

@@ -9,7 +9,7 @@
 Projeto utilizado apresentação sobre <a href="https://slides.com/alyssonmartin142/deck">Microsserviços e Comunicação Assíncrona</a>
 
 ## Rotas
-Para enviar publicar uma mensagem no rabbitmq <a href="http://localhost:3000/people/new" target="_blank">Send</a>
+Para enviar publicar uma mensagem no rabbitmq <a href="http://localhost:3000/people/send" target="_blank">Send</a>
 
 ## Installation
 
