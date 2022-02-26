@@ -32,7 +32,7 @@ $ npm run start:prod
 
 ## Test
 
-```bash
+```bash 
 # unit tests
 $ npm run test
 
